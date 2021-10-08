@@ -1,35 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { selectMovies } from "../features/movie/movieSlice";
+import { useSelector } from "react-redux";
 
 function Movies() {
+  const movies = useSelector(selectMovies);
+
   return (
     <Container>
       <h4>Recomended For You</h4>
       <Content>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D1FA6B0BBCD54F9876A5FF6EE4AA0CC8E5F0E0B9BF3139F0230FDD77CCECF941/scale?width=1200&aspectRatio=1.78&format=jpeg" />
-        </Wrap>
+        {movies &&
+          movies.map((movie) => (
+            <Wrap key={movie.id}>
+              <img src={movie.cardImg} />
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
@@ -47,6 +33,8 @@ const Content = styled.div`
 
 const Wrap = styled.div`
   border-radius: 10px;
+  margin-bottom: 50px;
+  margin-top: -50px;
   cursor: pointer;
   overflow: hidden;
   border: 3px solid rgba(249, 249, 249, 0.1);
